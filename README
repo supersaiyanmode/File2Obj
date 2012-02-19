@@ -1,0 +1,30 @@
+File2Obj
+
+file2Obj is a tiny program that reads an input file and outputs a C source code
+which can be compiled and linked with other projects that require embedding of
+files into the application program.
+
+INVOCATION:
+
+    file2obj <input-file> <C-variable-name> > <outfile.c>
+    
+    <input-file>        - The file to be embedded.
+    <C-variable-name>   - The variable name for the data.
+    <outfile.c>         - The output file.
+
+The C souce file outputted consists of the following:
+
+    * unsigned char * EMBED_DATA_{VARIABLE};
+        The pointer to the data. To be used only after initialisation.
+
+    * unsigned long EMBED_DATA_{VARIABLE}_LENGTH();
+        Returns an unsigned long denoting the length of the data.
+    
+    * int EMBED_DATA_{VARIABLE}_INIT();
+        Allocates memory and copies the data into it.
+        Returns '0' when memory can not be allocated.
+        Returns '1' to indicate success.
+        
+    * void EMBED_DATA_{VARIABLE}_CLOSE();
+        Can be manually called to free the data.
+        Added to atexit(..) during initialisation.
