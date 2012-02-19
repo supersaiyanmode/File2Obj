@@ -35,7 +35,7 @@ int main(int argc, char**argv){
     printf ("#include<stdlib.h>\n\n");
     printf ("#include<stdio.h>\n\n");
     printf ("static int EMBED_DATA_%s_FREED = 0;\n",argv[2]);
-    printf ("static unsigned char * EMBED_DATA_%s;\n\n",argv[2]);
+    printf ("unsigned char * EMBED_DATA_%s;\n\n",argv[2]);
 
     printf ("void EMBED_DATA_%s_CLOSE(){\n",argv[2]);
     printf ("    if (!EMBED_DATA_%s_FREED){\n",argv[2]);
